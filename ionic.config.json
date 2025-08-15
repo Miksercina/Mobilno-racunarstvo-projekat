@@ -1,0 +1,7 @@
+{
+  "name": "mobr",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
