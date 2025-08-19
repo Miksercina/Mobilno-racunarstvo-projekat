@@ -4,12 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-log-in',
   templateUrl: './log-in.page.html',
   styleUrls: ['./log-in.page.scss'],
+  standalone: false,
 })
 export class LogInPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
