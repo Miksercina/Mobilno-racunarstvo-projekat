@@ -15,16 +15,16 @@
         </ion-menu-toggle>
 
         <ion-menu-toggle>
-          <ion-item routerLink="/habits">
+          <ion-item routerLink="/about">
             <ion-icon name="document-text" slot="start"></ion-icon>
-            <ion-label>Habits</ion-label>
+            <ion-label>About</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle>
-          <ion-item routerLink="/habit-tracker">
+          <ion-item routerLink="/analytics">
             <ion-icon name="analytics-outline" slot="start"></ion-icon>
-            <ion-label>Habit tracker</ion-label>
+            <ion-label>Analytics</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
@@ -37,5 +37,28 @@
       </ion-list>
     </ion-content>
   </ion-menu>
+
+  <!-- Router outlet je tag unutar kojeg se prikazuje HTML stranica, sve iznad je recimo header, ispod footer -->
   <ion-router-outlet id="main"></ion-router-outlet>
+
+  <ion-tabs>
+    <!-- Tab bar -->
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="habits">
+        <!-- tab je jedinstveni identifikator-->
+        <ion-icon name="happy-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Habits</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="habit-tracker">
+        <ion-icon name="list-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Habit tracker</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="leaderboard">
+        <ion-icon name="map-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Leaderboard</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-app>

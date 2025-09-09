@@ -27,6 +27,18 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'analytics',
+    loadChildren: () => import('./analytics/analytics.module').then( m => m.AnalyticsPageModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'leaderboard',
+    loadChildren: () => import('./leaderboard/leaderboard.module').then( m => m.LeaderboardPageModule)
+  },
 
 ];
 
