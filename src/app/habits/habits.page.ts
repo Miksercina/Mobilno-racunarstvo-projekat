@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HabitModel } from './habit.model';
+import { HabitsService } from './habitsService';
 
 @Component({
   selector: 'app-habits',
@@ -8,13 +9,11 @@ import { HabitModel } from './habit.model';
   standalone: false,
 })
 export class HabitsPage implements OnInit {
-  habits: HabitModel[] = [
-    { id: 'h1', difficulty: 4, name: 'Drinking water' },
-    { id: 'h2', difficulty: 8, name: 'Regular gym going' },
-    { id: 'h3', difficulty: 10, name: 'Stop smoking' },
-  ];
+  habits: HabitModel[];
 
-  constructor() {}
+  constructor(private habitsService: HabitsService) {
+    this.habits = this.habitsService.habits;
+  }
 
   ngOnInit() {}
 }

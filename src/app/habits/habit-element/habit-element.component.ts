@@ -8,7 +8,12 @@ import { HabitModel } from '../habit.model';
   standalone: false,
 })
 export class HabitElementComponent implements OnInit {
-  @Input() habit: HabitModel = { id: '3', name: 'Kok', difficulty: 8 };
+  @Input() habit: HabitModel = {
+    id: '3',
+    name: 'Kok',
+    difficulty: 8,
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/2006-02-13_Drop-impact.jpg/640px-2006-02-13_Drop-impact.jpg',
+  };
 
   constructor() {}
 

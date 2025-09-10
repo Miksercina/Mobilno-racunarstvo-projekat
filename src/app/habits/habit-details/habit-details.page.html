@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/habits"></ion-back-button>
+    </ion-buttons>
+    <ion-title>habit-details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="ion-padding">
+    <img [src]="habit.icon" />
+    <ion-card-header>
+      <ion-card-title>{{habit.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Difficulty: {{habit.difficulty}}
+
+      <ion-buttons>
+        <ion-button fill="outline" shape="round">
+          <ion-icon name="heart"></ion-icon> Subscribe
+        </ion-button>
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
