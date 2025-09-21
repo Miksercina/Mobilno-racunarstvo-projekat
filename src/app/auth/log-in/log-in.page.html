@@ -15,26 +15,65 @@
           <ion-list>
             <ion-item>
               <ion-label position="floating">Email:&nbsp; </ion-label>
-              <ion-input type="email" ngModel name="email" email></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Password:&nbsp; </ion-label>
               <ion-input
-                type="password"
+                type="email"
                 ngModel
-                name="password"
-                required
-                minlength="7"
+                name="email"
+                email
+                #email="ngModel"
               ></ion-input>
+            </ion-item>
+
+            <ion-item
+              *ngIf="(email.invalid && email.touched) || email.value === ''"
+              lines="none"
+              style="color: var(--ion-color-danger)"
+            >
+              <p>Email nije validan&nbsp;</p>
             </ion-item>
           </ion-list>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col size="6" offset="3">
-          <ion-button type="submit" shape="round" expand="block"
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Password:&nbsp; </ion-label>
+            <ion-input
+              type="password"
+              ngModel
+              name="password"
+              required
+              minlength="7"
+              #password="ngModel"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item
+            *ngIf="password.invalid && password.touched"
+            lines="none"
+            style="color: var(--ion-color-danger)"
+          >
+            <p>Sifra je prekratka&nbsp;</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="4" offset="4" size-md="2" offset-md="5">
+          <ion-button
+            type="submit"
+            shape="round"
+            expand="block"
+            [disabled]="logInForm.invalid"
             >Log in</ion-button
+          >
+          <ion-button
+            type="button"
+            routerLink="/register"
+            shape="round"
+            expand="block"
+            >Register</ion-button
           >
         </ion-col>
       </ion-row>

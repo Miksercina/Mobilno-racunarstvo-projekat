@@ -17,6 +17,6 @@ export class LogInPage implements OnInit {
   onLogin(form: NgForm) {
     this.auth.login();
     this.router.navigateByUrl('/habits');
-    console.log(form);
+    // console.log(form);
   }
 }

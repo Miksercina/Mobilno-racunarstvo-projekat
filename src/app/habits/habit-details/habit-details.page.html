@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card class="ion-padding">
-    <img [src]="habit.icon" />
+  <ion-card class="ion-padding flex-centered">
+    <img [src]="habit.icon" class="habit-details-img" />
     <ion-card-header>
-      <ion-card-title>{{habit.name}}</ion-card-title>
+      <ion-card-title class="habit-name">{{habit.name}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Difficulty: {{habit.difficulty}}
+      Difficulty: {{habit.difficulty}} &nbsp;
 
       <ion-buttons>
         <ion-button fill="outline" shape="round">
