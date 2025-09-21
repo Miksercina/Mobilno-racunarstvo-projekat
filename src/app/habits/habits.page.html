@@ -16,11 +16,7 @@
   </ion-header>
 
   <ion-list>
-    <app-habit-element
-      *ngFor="let habit of habits"
-      [habit]="habit"
-      [routerLink]="habit.id"
-    >
+    <app-habit-element *ngFor="let habit of habits" [habit]="habit">
     </app-habit-element>
   </ion-list>
 </ion-content>

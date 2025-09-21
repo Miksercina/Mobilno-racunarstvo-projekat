@@ -18,3 +18,21 @@ ion-card-content {
   justify-content: space-between;
   align-items: center;
 }
+
+.habit-details-img {
+  height: 450px;
+  min-height: 300px;
+  object-fit: contain;
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.habit-name {
+  color: white;
+  font-size: 2rem;
+}

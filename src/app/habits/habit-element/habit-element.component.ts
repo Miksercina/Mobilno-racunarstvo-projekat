@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HabitModel } from '../habit.model';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-habit-element',
@@ -15,7 +16,33 @@ export class HabitElementComponent implements OnInit {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/2006-02-13_Drop-impact.jpg/640px-2006-02-13_Drop-impact.jpg',
   };
 
-  constructor() {}
+  constructor(private alertCtrl: AlertController) {}
 
   ngOnInit() {}
+
+  openAlert() {
+    this.alertCtrl //Vraca promise, zato pravimo .then deo
+      .create({
+        header: 'Saving habit',
+        message: 'You sure you wanna save the habit?',
+        buttons: [
+          {
+            text: 'Save',
+            handler: () => {
+              console.log('Saved!');
+            },
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Canceled!');
+            },
+          },
+        ],
+      })
+      .then((alert) => {
+        alert.present();
+      });
+  }
 }

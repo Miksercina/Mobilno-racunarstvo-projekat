@@ -1,5 +1,16 @@
 <ion-item>
-  <ion-label> {{ habit.name }}</ion-label>
-  <ion-label slot="end">D: {{ habit.difficulty }}</ion-label>
-  <img class="habit-img" src="{{ habit.icon }}" alt="" />
+  <ion-item [routerLink]="habit.id" style="width: 90%">
+    <ion-label style="color: white"> {{ habit.name }}</ion-label>
+    <div class="flex-centered-row">
+      <ion-label slot="end">D: {{ habit.difficulty }}</ion-label>
+      <img class="habit-img" src="{{ habit.icon }}" alt="" />
+    </div>
+  </ion-item>
+
+  <ion-icon
+    name="bookmark-sharp"
+    color="tertiary"
+    slot="end"
+    (click)="openAlert()"
+  ></ion-icon>
 </ion-item>
