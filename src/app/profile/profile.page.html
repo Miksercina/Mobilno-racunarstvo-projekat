@@ -8,9 +8,44 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mihajlo Dakić</ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      This is the profile page of your account.
+    </ion-card-content>
+  </ion-card>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">profile</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-list>
+    <ion-item>
+      <ion-textarea [disabled]="true" label="Name" placeholder="Mihajlo"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-textarea [disabled]="true" label="Surname" placeholder="Dakić"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-textarea [disabled]="true" label="Email" placeholder="md20210384@student.fon.bg.ac.rs"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-textarea [disabled]="true" label="Email" placeholder="md20210384@student.fon.bg.ac.rs"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input [disabled]="true" type="password" label="Password" value="NeverGonnaGiveYouUp">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button shape="round" size="small" ionBlur="true">Izmeni</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+
+
