@@ -27,7 +27,7 @@ export class HabitModelComponent implements OnInit {
     this.modalCtrl.dismiss(
       {
         habitData: {
-          habit: this.form.value['habit'],
+          name: this.form.value['name'],
           difficulty: this.form.value['difficulty'],
         },
       },

@@ -1,11 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HabitModel } from './habit.model';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, map, switchMap, take, tap } from 'rxjs';
+
+interface HabitData {
+  name: string;
+  difficulty: number;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class HabitsService {
-  habits: HabitModel[] = [
+  private _habits = new BehaviorSubject<HabitModel[]>([]);
+
+  oldHabits: HabitModel[] = [
     {
       id: 'h1',
       difficulty: 4,
@@ -44,13 +53,72 @@ export class HabitsService {
     },
   ];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  get habits() {
+    return this._habits.asObservable();
+  }
+
+  addHabit(name: string, difficulty: number) {
+    let generatedId: string;
+
+    return this.http
+      .post<{ name: string }>(
+        `https://habit-today-default-rtdb.europe-west1.firebasedatabase.app/habits.json`,
+        { name, difficulty }
+      )
+      .pipe(
+        switchMap((resData) => {
+          generatedId = resData.name;
+          return this.habits;
+        }),
+        take(1),
+        tap((habits) => {
+          this._habits.next(
+            habits.concat({
+              id: generatedId,
+              name,
+              difficulty,
+              icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Cheroot_Smoking_%28edited%29.jpg/640px-Cheroot_Smoking_%28edited%29.jpg',
+            })
+          );
+        })
+      );
+  }
+
+  getHabits() {
+    return this.http
+      .get<{ [key: string]: HabitData }>(
+        `https://habit-today-default-rtdb.europe-west1.firebasedatabase.app/habits.json`
+      )
+      .pipe(
+        map((habitsData) => {
+          const habits: HabitModel[] = [];
+
+          for (const key in habitsData) {
+            if (habitsData.hasOwnProperty(key)) {
+              habits.push({
+                id: key,
+                name: habitsData[key].name,
+                difficulty: habitsData[key].difficulty,
+                icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bonnet_Macaque_DSC_1125.jpg/640px-Bonnet_Macaque_DSC_1125.jpg',
+              });
+            }
+          }
+
+          return habits;
+        }),
+        tap((habits) => {
+          this._habits.next(habits);
+        })
+      );
+  }
 
   getHabit(id: string | null): HabitModel | undefined {
     if (!id) {
       return undefined;
     }
-    return this.habits.find((h: HabitModel) => h.id === id);
+    return this.oldHabits.find((h: HabitModel) => h.id === id);
     //Vracamo habit koji odgovara id-ju koji smo prosledili
   }
 }
