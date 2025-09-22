@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class ProfilePage implements OnInit {
+  isDisabled: boolean = true;
   constructor() {}
 
   ngOnInit() {}
+  toggleInput() {
+    this.isDisabled = !this.isDisabled;
+  }
 }

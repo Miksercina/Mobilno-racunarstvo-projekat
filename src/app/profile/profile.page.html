@@ -25,24 +25,21 @@
   </ion-header>
   <ion-list>
     <ion-item>
-      <ion-textarea [disabled]="true" label="Name" placeholder="Mihajlo"></ion-textarea>
+      <ion-textarea [disabled]="isDisabled" label="Name" placeholder="Mihajlo"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-textarea [disabled]="true" label="Surname" placeholder="Dakić"></ion-textarea>
+      <ion-textarea [disabled]="isDisabled" label="Surname" placeholder="Dakić"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-textarea [disabled]="true" label="Email" placeholder="md20210384@student.fon.bg.ac.rs"></ion-textarea>
+      <ion-textarea [disabled]="isDisabled" label="Email" placeholder="md20210384@student.fon.bg.ac.rs"></ion-textarea>
     </ion-item>
-    <ion-item>
-      <ion-textarea [disabled]="true" label="Email" placeholder="md20210384@student.fon.bg.ac.rs"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-input [disabled]="true" type="password" label="Password" value="NeverGonnaGiveYouUp">
+        <ion-item>
+      <ion-input [disabled]="isDisabled" type="password" label="Password" value="NeverGonnaGiveYouUp">
         <ion-input-password-toggle slot="end"></ion-input-password-toggle>
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-button shape="round" size="small" ionBlur="true">Izmeni</ion-button>
+      <ion-button shape="round" (click)="toggleInput()" size="small" ionBlur="true">Izmeni</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
