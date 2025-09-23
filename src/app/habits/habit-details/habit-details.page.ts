@@ -15,6 +15,7 @@ export class HabitDetailsPage implements OnInit {
     difficulty: 4,
     name: 'Drinking water',
     icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/2006-02-13_Drop-impact.jpg/640px-2006-02-13_Drop-impact.jpg',
+    userId: 'xx',
   };
 
   constructor(

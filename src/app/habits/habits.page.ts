@@ -59,8 +59,9 @@ export class HabitsPage implements OnInit, OnDestroy {
               resultData.data.habitData.name,
               resultData.data.habitData.difficulty
             )
-            .subscribe((habits) => {
+            .subscribe(() => {
               // this.habits = habits;
+              console.log();
             });
         }
       });

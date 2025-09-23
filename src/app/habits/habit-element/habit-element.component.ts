@@ -14,6 +14,7 @@ export class HabitElementComponent implements OnInit {
     name: 'Kok',
     difficulty: 8,
     icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/2006-02-13_Drop-impact.jpg/640px-2006-02-13_Drop-impact.jpg',
+    userId: 'xx',
   };
 
   constructor(private alertCtrl: AlertController) {}

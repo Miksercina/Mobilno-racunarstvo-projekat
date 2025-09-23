@@ -10,13 +10,20 @@ import { NgForm } from '@angular/forms';
   standalone: false,
 })
 export class LogInPage implements OnInit {
+  isLoading = false;
   constructor(private auth: Auth, private router: Router) {}
 
   ngOnInit() {}
 
   onLogin(form: NgForm) {
-    this.auth.login();
-    this.router.navigateByUrl('/habits');
+    this.isLoading = true;
+    this.auth.login(form.value).subscribe((resData) => {
+      console.log('Log in successful');
+      console.log(resData);
+      this.isLoading = false;
+      this.router.navigateByUrl('/habits');
+    });
+
     // console.log(form);
   }
 }

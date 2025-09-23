@@ -1,6 +1,9 @@
-export interface HabitModel {
-  id: string;
-  difficulty: number;
-  name: string;
-  icon: string;
+export class HabitModel {
+  constructor(
+    public id: string,
+    public difficulty: number,
+    public name: string,
+    public icon: string,
+    public userId: string
+  ) {}
 }
