@@ -79,11 +79,27 @@ export class HabitsService {
               id: generatedId,
               name,
               difficulty,
-              icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Cheroot_Smoking_%28edited%29.jpg/640px-Cheroot_Smoking_%28edited%29.jpg',
+              icon: this.getRandomIcon(),
             })
           );
         })
       );
+  }
+
+  getRandomIcon() {
+    let icons: string[] = [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bonnet_Macaque_DSC_1125.jpg/640px-Bonnet_Macaque_DSC_1125.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Big_n8_at_Home_-_man_using_home_computer%2C_2001.jpg/640px-Big_n8_at_Home_-_man_using_home_computer%2C_2001.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/People_eating_at_table_in_restaurant.png/640px-People_eating_at_table_in_restaurant.png',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Humanitarian_aid_OCPA-2005-10-28-090517a.jpg/640px-Humanitarian_aid_OCPA-2005-10-28-090517a.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Cheroot_Smoking_%28edited%29.jpg/640px-Cheroot_Smoking_%28edited%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Eduard_von_Gr%C3%BCtzner_Falstaff.jpg/640px-Eduard_von_Gr%C3%BCtzner_Falstaff.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Ambigram_tattoo_Stay_here_written_on_feet.jpg/640px-Ambigram_tattoo_Stay_here_written_on_feet.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Funny_Cide.jpg/640px-Funny_Cide.jpg',
+    ];
+
+    const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+    return randomIcon;
   }
 
   getHabits() {
@@ -101,7 +117,7 @@ export class HabitsService {
                 id: key,
                 name: habitsData[key].name,
                 difficulty: habitsData[key].difficulty,
-                icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bonnet_Macaque_DSC_1125.jpg/640px-Bonnet_Macaque_DSC_1125.jpg',
+                icon: this.getRandomIcon(),
               });
             }
           }
@@ -118,7 +134,7 @@ export class HabitsService {
     if (!id) {
       return undefined;
     }
-    return this.oldHabits.find((h: HabitModel) => h.id === id);
+    return this._habits.value.find((h: HabitModel) => h.id === id);
     //Vracamo habit koji odgovara id-ju koji smo prosledili
   }
 }
