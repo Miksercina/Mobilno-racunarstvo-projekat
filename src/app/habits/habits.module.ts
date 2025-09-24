@@ -7,11 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { HabitsPageRoutingModule } from './habits-routing.module';
 
 import { HabitsPage } from './habits.page';
-import { HabitElementComponent } from './habit-element/habit-element.component';
+
 import { HabitModelComponent } from './habit-model/habit-model.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, HabitsPageRoutingModule],
-  declarations: [HabitsPage, HabitElementComponent, HabitModelComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HabitsPageRoutingModule,
+    SharedModule,
+  ],
+  declarations: [HabitsPage, HabitModelComponent],
 })
 export class HabitsPageModule {}

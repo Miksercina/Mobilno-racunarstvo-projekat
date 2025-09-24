@@ -14,9 +14,9 @@
       <ion-title size="large">habit-tracker</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-buttons class="ion-justify-content-center">
-    <ion-button routerLink="/habits" color="secondary" fill="solid">
-      Habits
-    </ion-button>
-  </ion-buttons>
+
+  <ion-list>
+    <app-habit-element *ngFor="let habit of habits" [habit]="habit">
+    </app-habit-element>
+  </ion-list>
 </ion-content>

@@ -1,7 +1,8 @@
 import { HabitsService } from './../habitsService';
 import { Component, OnInit } from '@angular/core';
 import { HabitModel } from '../habit.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-habit-details',
@@ -20,7 +21,9 @@ export class HabitDetailsPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private habitsService: HabitsService
+    private habitsService: HabitsService,
+    private router: Router,
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
@@ -31,6 +34,26 @@ export class HabitDetailsPage implements OnInit {
       } else {
         console.warn('Habit not found');
       }
+    });
+  }
+
+  onDelete() {
+    this.habitsService.deleteHabit(this.habit.id).subscribe({
+      next: () => {
+        this.router.navigate(['/habits']);
+        this.alertCtrl
+          .create({
+            header: 'Deletion complete!',
+            message: 'Deleted!',
+            buttons: ['Fine'],
+          })
+          .then((alert) => {
+            alert.present();
+          });
+      },
+      error: (err) => {
+        console.log('Deleting failed');
+      },
     });
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { User } from './user.model';
+import { HabitsService } from '../habits/habitsService';
 
 interface AuthResponseData {
   kind: string;
@@ -126,5 +127,6 @@ export class Auth {
 
   logout() {
     this._user.next(null);
+    //this.habitsService.resetHabits();
   }
 }
