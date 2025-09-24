@@ -7,3 +7,14 @@ ion-toolbar ion-title {
   text-align: center;
   pointer-events: none;
 }
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+ion-avatar {
+  width: 120px;
+  height: 120px;
+}
+
