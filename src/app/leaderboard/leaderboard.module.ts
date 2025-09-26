@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { LeaderboardPageRoutingModule } from './leaderboard-routing.module';
 
 import { LeaderboardPage } from './leaderboard.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LeaderboardPageRoutingModule
+    LeaderboardPageRoutingModule,
+    SharedModule,
   ],
-  declarations: [LeaderboardPage]
+  declarations: [LeaderboardPage],
 })
 export class LeaderboardPageModule {}
