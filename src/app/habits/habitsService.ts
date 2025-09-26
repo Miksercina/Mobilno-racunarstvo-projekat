@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HabitModel } from './habit.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, switchMap, take, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, map, of, switchMap, take, tap } from 'rxjs';
 import { Auth } from '../auth/auth';
 
 interface HabitData {
@@ -186,6 +186,55 @@ export class HabitsService {
       }),
       tap((habits) => {
         this._habits.next(habits);
+      })
+    );
+  }
+
+  getLeaderboard() {
+    return this.authService.token.pipe(
+      take(1),
+      switchMap((token) => {
+        if (!token) {
+          return of([]); // no token = not logged in
+        }
+
+        return forkJoin([
+          this.http.get<{ [key: string]: HabitData }>(
+            `https://habit-today-default-rtdb.europe-west1.firebasedatabase.app/habits.json?auth=${token}`
+          ),
+          this.http.get<{ [userId: string]: { name: string } }>(
+            `https://habit-today-default-rtdb.europe-west1.firebasedatabase.app/users.json?auth=${token}`
+          ),
+        ]);
+      }),
+      map(([habitsData, users]) => {
+        if (!habitsData) {
+          return [];
+        }
+
+        const safeUsers = users || {};
+        const counts: { [userId: string]: number } = {};
+
+        // Count habits per user
+        for (const key in habitsData) {
+          if (habitsData.hasOwnProperty(key)) {
+            const userId = habitsData[key].userId;
+            if (userId) {
+              counts[userId] = (counts[userId] || 0) + 1;
+            }
+          }
+        }
+
+        // Build leaderboard
+        const leaderboard = Object.keys(counts)
+          .map((userId) => ({
+            name: safeUsers[userId]?.name || userId,
+            count: counts[userId],
+          }))
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 3);
+
+        return leaderboard;
       })
     );
   }

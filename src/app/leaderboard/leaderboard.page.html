@@ -13,4 +13,20 @@
       <ion-title size="large">leaderboard</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <li *ngFor="let user of leaderboard">
+      <ion-card class="ion-text-center">
+        <img
+          style="height: 200px"
+          src="https://t4.ftcdn.net/jpg/01/37/15/11/360_F_137151186_DoOLwu948tiogaqRmXNtjwdWzsUGuR0y.jpg"
+          alt="throphy"
+        />
+        <ion-card-header>User: {{user.name}}</ion-card-header>
+        <ion-card-content
+          ><b>Number of habits: {{user.count}}</b></ion-card-content
+        >
+      </ion-card>
+    </li>
+  </ion-list>
 </ion-content>
