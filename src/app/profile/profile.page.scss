@@ -7,3 +7,24 @@ ion-toolbar ion-title {
   text-align: center;
   pointer-events: none;
 }
+ion-item ion-label {
+  display: flex;
+  flex-direction: column;
+}
+
+ion-card-title {
+  margin-bottom: 8px;
+}
+.avatar-container {
+  display: flex;
+  justify-content: left;
+  margin: 20px 0;
+}
+
+ion-avatar {
+  width: 50px;
+  height: 50px;
+}
+ion-button {
+  font-weight: bold;
+}
