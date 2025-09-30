@@ -124,6 +124,18 @@ export class Auth {
         })
       );
   }
+  getCurrentUser() {
+    return this._user.value;
+  }
+  updateUser(userData: { name: string; surname: string; email: string }) {
+    const userId = this._user.value?.id;
+    if (!userId) return;
+
+    return this.http.put(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}/users/${userId}.json?auth=${this._user.value?.token}`,
+      userData
+    );
+  }
 
   logout() {
     this._user.next(null);

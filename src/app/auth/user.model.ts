@@ -3,8 +3,10 @@ export class User {
     public id: string,
     public email: string,
     private _token: string,
-    private tokenExpirationDate: Date
-  ) {}
+    private tokenExpirationDate: Date,
+    public name?: string,      // 👈 dodaj ovo
+    public surname?: string
+) {}
 
   get token() {
     if (!this.tokenExpirationDate || this.tokenExpirationDate <= new Date()) {

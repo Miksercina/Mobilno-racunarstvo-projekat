@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard';
+import {AnalyticsPageModule} from "./analytics/analytics.module";
+import { AnalyticsPage } from './analytics/analytics.page';
 
 const routes: Routes = [
   {
@@ -35,8 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'analytics',
-    loadChildren: () =>
-      import('./analytics/analytics.module').then((m) => m.AnalyticsPageModule),
+    component: AnalyticsPage,
     canMatch: [AuthGuard],
   },
   {

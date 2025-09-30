@@ -14,8 +14,8 @@
         <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="avatar">
       </ion-avatar>
       <ion-label>
-        <ion-card-title>Mihajlo Dakic</ion-card-title>
-        <ion-card-subtitle>This is the profile page of your account.</ion-card-subtitle>
+        <ion-card-title>{{ user.name }} {{ user.surname }}</ion-card-title>
+        <ion-card-subtitle>Welcome to the profile page of your account.</ion-card-subtitle>
       </ion-label>
     </ion-item>
   </ion-card>
@@ -24,29 +24,34 @@
       <ion-title size="large">profile</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div class="avatar-container">
-    <ion-avatar>
-      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="avatar">
-    </ion-avatar>
-  </div>
+
   <ion-list>
-    <ion-item>
-      <ion-textarea [disabled]="isDisabled" label="Name" placeholder="Mihajlo"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-textarea [disabled]="isDisabled" label="Surname" placeholder="Dakić"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-textarea [disabled]="isDisabled" label="Email" placeholder="md20210384@student.fon.bg.ac.rs"></ion-textarea>
-    </ion-item>
-        <ion-item>
-      <ion-input [disabled]="isDisabled" type="password" label="Password" value="NeverGonnaGiveYouUp">
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-button shape="round" (click)="toggleInput()" size="small" ionBlur="true">Izmeni</ion-button>
-    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-textarea [(ngModel)]="user.name" [disabled]="isDisabled" label="Name"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea [(ngModel)]="user.surname" [disabled]="isDisabled" label="Surname"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea [(ngModel)]="user.email" [disabled]="isDisabled" label="Email"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-input [(ngModel)]="user.password" [disabled]="isDisabled" type="password" label="Password">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button shape="round" (click)="toggleInput()" size="small">
+          {{ isDisabled ? 'EDIT' : 'SAVE' }}
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
   </ion-list>
 </ion-content>
 

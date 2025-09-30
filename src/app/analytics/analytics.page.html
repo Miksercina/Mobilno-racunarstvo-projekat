@@ -12,4 +12,97 @@
       <ion-title size="large">analytics</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="4">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Total</ion-card-subtitle>
+            <ion-card-title>{{ totalActivities }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Ukupan broj obavljenih aktivnosti od početka praćenja.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="4">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Avg / day</ion-card-subtitle>
+            <ion-card-title>{{ avgPerDay | number:'1.1-2' }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Prosečan broj aktivnosti dnevno (računato za period u prikazu).
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="4">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Best day</ion-card-subtitle>
+            <ion-card-title>{{ bestDayLabel }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Dan sa najviše aktivnosti.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Activities per day (last 7 days) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Activities — last 7 days</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="bars">
+        <div *ngFor="let d of last7Days" class="bar-row">
+          <div class="bar-label">
+            <div class="label-day">{{ d.label }}</div>
+            <div class="label-count">{{ activitiesByDayMap[d.dateKey] || 0 }}</div>
+          </div>
+
+          <div class="bar-track">
+            <div
+              class="bar-fill"
+              [style.width.%]="getDayPercent(activitiesByDayMap[d.dateKey] || 0)"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Recent activity list -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Recent activities</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let rec of recentActivities">
+      <ion-label>
+        <h3>{{ rec.habitName }}</h3>
+        <p>{{ recTimestamp(rec.timestamp) }}</p>
+      </ion-label>
+      <ion-note slot="end">{{ rec.dayLabel }}</ion-note>
+    </ion-item>
+  </ion-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </ion-content>

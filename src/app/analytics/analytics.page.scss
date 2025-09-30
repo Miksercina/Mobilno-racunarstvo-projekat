@@ -7,3 +7,35 @@ ion-toolbar ion-title {
   text-align: center;
   pointer-events: none;
 }
+.bars {
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+  }
+
+  .bar-label {
+    width: 110px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--ion-color-medium);
+    margin-right: 12px;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 12px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: var(--ion-color-primary);
+    border-radius: 6px;
+    transition: width 300ms ease;
+  }
+}
+
