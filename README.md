@@ -1,5 +1,6 @@
 # Mobilno-racunarstvo-projekat
 **Aplikacija za praćenje navika**
+
 Unutar ovog repozitorijuma nalazi se projekat rađen za predmet Mobilno računarstvo i on je razvijen od strane studenata Fakulteta organizacionih nauka. U izradi smo koristili primrano Ionic + Angular razvojno okruženje. Tema našeg projekta jeste aplikacija koja je namenjena da bude "habit tracker", odnosno aplikacija koju bi ljudi koristili kako bi vodili evidenciju o tome koje su njihove navike na dnevnom nivou, nevezano da li su one negativne ili pozitivne. Korisnik ima mogućnost registracije i logovanja, uređivanja svog profila, dodavanja i menjanja navika, kao i praćenja statistike kroz jednostavan analytics prikaz. 
 Funkcionalnosti naše aplikacije su:
 - Autentikaciju korisnika smo ostvarili pomoću Firebase Authentication-a gde se tokeni i podaci o korisnicima čuvaju bezbedno. 
