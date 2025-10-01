@@ -8,7 +8,7 @@ Funkcionalnosti naše aplikacije su:
 - Svaka navika se može posebno uređivati. Pored svake se nalazi dugme EDIT/SAVE koje omogućava korisniku da izmeni naziv navike i snimi je. Ideja je da korisnik lako menja navike koje mu više ne odgovaraju ili ih prilagođava svojim potrebama i menja njihovu tezinu.
 - Korisnik može da vidi osnovne informacije o broju aktivnosti i navikama po danu. Statistika je zamišljena tako da prikaže napredak i motiviše korisnika da nastavi sa zdravim navikama.
 
-Tehnologije
+Tehnologije koje smo koristili:
 - Ionic Framework
 - Angular
 - Firebase Authentication za logovanje i registraciju
