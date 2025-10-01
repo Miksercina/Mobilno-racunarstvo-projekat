@@ -3,24 +3,45 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/habits"></ion-back-button>
     </ion-buttons>
-    <ion-title>habit-details</ion-title>
+    <ion-title>Habit details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card class="ion-padding flex-centered">
     <img [src]="habit.icon" class="habit-details-img" />
-    <ion-card-header>
-      <ion-card-title class="habit-name">{{habit.name}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Difficulty: {{habit.difficulty}} &nbsp;
 
-      <ion-buttons>
-        <ion-button fill="outline" shape="round" (click)="onDelete()">
-          <ion-icon name="trash-outline"></ion-icon> Delete
+    <ng-container *ngIf="!isEditMode; else edit">
+      <ion-card-header>
+        <ion-card-title class="habit-name">{{ habit.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Difficulty: {{ habit.difficulty }}
+        <br />
+
+        <ion-buttons>
+          <ion-button fill="outline" shape="round" (click)="toggleEdit()">
+            <ion-icon name="pencil-outline"></ion-icon> Edit
+          </ion-button>
+          <ion-button fill="outline" shape="round" color="danger" (click)="onDelete()">
+            <ion-icon name="trash-outline"></ion-icon> Delete
+          </ion-button>
+        </ion-buttons>
+      </ion-card-content>
+    </ng-container>
+
+    <!-- Edit mode template -->
+    <ng-template #edit>
+      <ion-card-header>
+        <ion-input [(ngModel)]="habit.name" label="Name"></ion-input>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-input type="number" [(ngModel)]="habit.difficulty" label="Difficulty"></ion-input>
+        <br />
+        <ion-button expand="block"  (click)="saveHabit()">
+          SAVE
         </ion-button>
-      </ion-buttons>
-    </ion-card-content>
+      </ion-card-content>
+    </ng-template>
   </ion-card>
 </ion-content>

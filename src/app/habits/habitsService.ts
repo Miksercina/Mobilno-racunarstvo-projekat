@@ -291,6 +291,28 @@ export class HabitsService {
       return undefined;
     }
     return this._habits.value.find((h: HabitModel) => h.id === id);
-    //Vracamo habit koji odgovara id-ju koji smo prosledili
+
+  }
+  updateHabit(habitId: string, data: any) {
+    let fetchedToken: string;
+
+    return this.authService.token.pipe(
+      take(1),
+      switchMap((token) => {
+        fetchedToken = token!;
+        return this.http.patch(
+          `https://habit-today-default-rtdb.europe-west1.firebasedatabase.app/habits/${habitId}.json?auth=${fetchedToken}`,
+          data
+        );
+      }),
+      switchMap(() => this.habits), // vrati trenutne habits iz BehaviorSubject
+      take(1),
+      tap((habits) => {
+        const updatedHabits = habits.map((h) =>
+          h.id === habitId ? { ...h, ...data } : h
+        );
+        this._habits.next(updatedHabits);
+      })
+    );
   }
 }

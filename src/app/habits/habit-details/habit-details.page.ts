@@ -18,6 +18,7 @@ export class HabitDetailsPage implements OnInit {
     icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/2006-02-13_Drop-impact.jpg/640px-2006-02-13_Drop-impact.jpg',
     userId: 'xx',
   };
+  isEditMode = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,5 +56,21 @@ export class HabitDetailsPage implements OnInit {
         console.log('Deleting failed');
       },
     });
+  }
+  toggleEdit() {
+    this.isEditMode = !this.isEditMode;
+  }
+
+
+  saveHabit() {
+    this.habitsService
+      .updateHabit(this.habit.id, {
+        name: this.habit.name,
+        difficulty: this.habit.difficulty,
+      })
+      .subscribe(() => {
+        console.log('Habit updated:', this.habit);
+        this.isEditMode = false;
+      });
   }
 }
